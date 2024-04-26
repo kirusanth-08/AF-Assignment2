@@ -1,13 +1,24 @@
 import React from 'react'
+import { Link } from 'react-scroll'
+
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
 
 const Home = () => {
   return (
-    <div className='absolute w-full h-screen flex justify-center items-center'>
+    <div className='w-full h-screen flex justify-center items-center'>
         <div className=' flex flex-col font-extrabold text-7xl w-1/4 h-2/4 mr-8 rounded-2xl p-12'>
             Lets Dive into the Space.
-                <button className=' mt-4 border-2 border-white text-xl rounded-md py-1 px-2 hover:text-blue-900 hover:bg-white hover:border-white transition-all'>Dive In!</button>
+            <Link to="menu" smooth={true} duration={800}>
+                <button className=' mt-4 border-2 border-white text-4xl rounded-md py-1 px-10 hover:text-blue-900 hover:bg-white hover:border-white transition-all'>Dive In!</button>
+            </Link>
         </div>
-        <div className='text-4xl w-2/4 h-3/4 ml-8 bg-black rounded-2xl overflow-hidden'><img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/NASA_Mars_Rover.jpg" className=' object-cover w-full opacity-80'/></div>
+        <div className='text-4xl w-2/4 h-3/4 ml-8 bg-black rounded-2xl overflow-hidden shadow-inner'>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/NASA_Mars_Rover.jpg" className=' object-cover w-full opacity-80' />
+        </div>
     </div>
   )
 }

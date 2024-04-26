@@ -1,16 +1,16 @@
 import React from "react";
-import "./Navbar.css";
+// import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <div className="navbar">
-      <div className="navbar_logo">
-        <h1>Navbar</h1>
+    <div className="flex justify-around items-center fixed bg-black bg-opacity-20 text-white w-full">
+      <div className="font-extrabold">
+        <h1 className="text-lg">Navbar</h1>
       </div>
-      <div className="navbar_links">
-        <a href="#" className="navbar_link">Home</a>
-        <a href="#" className="navbar_link">Contact</a>
-        <a href="#" className="navbar_link">Support</a>
+      <div className="flex justify-between items-center w-1/5">
+        <a href="#" className="p-3 px-5 transition-all duration-500 hover:bg-white hover:bg-opacity-20">Home</a>
+        <a href="#" className="p-3 px-5 transition-all duration-500 hover:bg-white hover:bg-opacity-20">Contact</a>
+        <a href="#" className="p-3 px-5 transition-all duration-500 hover:bg-white hover:bg-opacity-20">Support</a>
       </div>
     </div>
   );

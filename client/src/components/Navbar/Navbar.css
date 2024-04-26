@@ -6,7 +6,6 @@
     background-color: #000000b1;
     color: white;
     width: 100%;
-    padding: 10px;
 }
 
 .navbar .navbar_logo {
@@ -19,4 +18,13 @@
     justify-content: space-between;
     align-items: center;
     width: 25%;
+}
+
+ .navbar_link {
+    padding: 10px 20px;
+    transition: 0.5s;
+}
+
+.navbar_link:hover {
+    background-color: rgba(255, 255, 255, 0.199);
 }

@@ -1,7 +1,8 @@
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.789), rgba(0, 0, 0, 0.625)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXN0cm9ub215JTIwd2FsbHBhcGVyfGVufDB8fDB8fHww');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.23), rgba(0, 0, 0, 0.625)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8YXN0cm9ub215JTIwd2FsbHBhcGVyfGVufDB8fDB8fHww');
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.789), rgba(0, 0, 0, 0.625)), url('https://bsmedia.business-standard.com/_media/bs/img/article/2020-10/07/full/1602035787-2512.jpg?im=FeatureCrop,size=(826,465)'); */
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
-  backdrop-filter: blur(50px); /* Add the blur effect */
+  backdrop-filter: blur(55px);
 }

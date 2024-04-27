@@ -1,9 +1,8 @@
 import React from "react";
-// import "./Navbar.css";
 
 const Navbar = () => {
   return (
-    <div className="fixed flex justify-around items-center bg-black bg-opacity-20 text-white w-full">
+    <div className="navbar z-50 fixed flex justify-around items-center bg-black bg-opacity-20 text-white w-full">
       <div className="font-extrabold">
         <h1 className="text-lg">SpaceInsights</h1>
       </div>

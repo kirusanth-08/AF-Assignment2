@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 const Menu = () => {
   return (
@@ -14,7 +13,7 @@ const Menu = () => {
             <img src='https://media.npr.org/assets/img/2022/11/04/good-night-oppy-563d16751105d6ca147bbcdfd72d47a704494ae8-s1100-c50.jpg' 
                 alt='mars' 
                 className='w-full h-full object-cover hover:opacity-50 transform transition-all duration-500 hover:scale-110 cursor-pointer' />
-                <div className='absolute bottom-0 right-0 text-white text-3xl font-bold p-4  text-right  cursor-pointer'>Mars Rover</div>
+                <div className='absolute bottom-0 right-0 text-white text-3xl font-bold p-4  text-right cursor-pointer'>Mars Rover</div>
         </a>
     </div>
   )

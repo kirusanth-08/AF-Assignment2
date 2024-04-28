@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-scroll'
+
 const Home = () => {
   return (
     <div className='home w-full h-screen flex justify-center items-center'>

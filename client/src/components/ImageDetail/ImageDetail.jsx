@@ -29,7 +29,7 @@ const ImageDetail = () => {
 
           
           <div className="p-1 m-2 absolute right-2 cursor-pointer bg-white bg-opacity-0 hover:bg-opacity-5 text-xs border-2 opacity-40 hover:opacity-70 rounded-lg transition-all" onClick={ showDetailHandler }>
-            { showDetail ? 'Open Details' : 'Close Details' }
+            { showDetail ? 'Close Details' : 'Open Details' }
           </div>
 
           { showDetail && (

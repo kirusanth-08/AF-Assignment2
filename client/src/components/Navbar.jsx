@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="flex justify-between items-center w-1/5">
         <Link to="/" className="p-3 px-5 transition-all duration-500 hover:bg-white hover:bg-opacity-20">Home</Link>
         <Link to="/contact" className="p-3 px-5 transition-all duration-500 hover:bg-white hover:bg-opacity-20">Contact</Link>
-        <Link to="/support" className="p-3 px-5 transition-all duration-500 hover:bg-white hover:bg-opacity-20">Support</Link>
+        <Link to="/support" className="p-3 px-5 transition-all duration-500 hover:bg-white hover:bg-opacity-20">About</Link>
       </div>
     </div>
   );

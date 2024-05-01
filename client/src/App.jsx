@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import Home from './components/Home/Home';
-import Menu from './components/Menu/Menu';
-import MarsRover from './components/MarsRover/MarsRover';
-import ImageDetail from './components/ImageDetail/ImageDetail';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import Menu from './components/Menu';
+import MarsRover from './components/MarsRover';
+import APOD from './components/APOD';
 import Photos from './components/Photos';
 
 const App = () => (
@@ -14,8 +14,9 @@ const App = () => (
       <Navbar />
       <Routes>
         <Route path="/" element={<><Home /><Menu /></>} />
+        <Route path="/apod" element={<APOD />} />
         <Route path="/marsrover" element={<MarsRover />} />
-        <Route path="/imagedetail" element={<ImageDetail />} />
+        <Route path="/photos" element={<Photos />} />
         <Route path="/photos" element={<Photos />} />
       </Routes>
     </div>

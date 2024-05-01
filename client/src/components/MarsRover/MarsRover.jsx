@@ -7,7 +7,6 @@ const MarsRover = () => {
         <div className=' rounded-lg p-5 bg-opacity-20 bg-white border-2 border-white'>
           <form className='flex flex-col items-start justify-center'>
             <label className='text-2xl font-bold'>Mars Rover Photos</label>
-            <input type='text' placeholder='Enter sol' className='w-1/2 p-2' />
             <div>
               <label>Earth Date:</label>
               <input type='date' className='p-2' />

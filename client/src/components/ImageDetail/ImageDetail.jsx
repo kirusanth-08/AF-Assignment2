@@ -21,7 +21,7 @@ const ImageDetail = () => {
   }, []);
 
   return (
-    <div className="imagedetail w-full bg-white-400 h-screen flex justify-center items-center">
+    <div className="bg-blurred w-full bg-white-400 h-screen flex justify-center items-center">
       {data ? (
         
         <div className="relative flex max-w-6xl h-3/4 rounded-md overflow-hidden border-2 border-opacity-20">

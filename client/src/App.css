@@ -4,10 +4,14 @@ body {
   min-height: 100vh;
 }
 
-.home, .menu, .mars, .imagedetail{
+.bg-blurred{
   backdrop-filter: blur(30px);
 }
 
+/* .App {
+  backdrop-filter: blur(105px);
+  min-height: 100vh;
+} */
 .navbar {
   backdrop-filter: blur(105px);
 }

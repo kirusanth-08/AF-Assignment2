@@ -17,16 +17,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          node-version: '14'
 
-      - name: Install client-side dependencies
-        run: npm install --prefix ${{ env.CLIENT_PACKAGE_PATH }}
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./path/to/your/directory
 
       - name: Build client-side application
         run: npm run build --prefix ${{ env.CLIENT_PACKAGE_PATH }}

@@ -7,7 +7,6 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: NASA-Xplore
-  SERVER_PACKAGE_PATH: './server/'
   CLIENT_PACKAGE_PATH: './client/'
   NODE_VERSION: '14.x'
 
@@ -26,12 +25,6 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
 
-      - name: Install server-side dependencies
-        run: npm install --prefix ${{ env.SERVER_PACKAGE_PATH }}
-
-      - name: Build server-side application
-        run: npm run build --prefix ${{ env.SERVER_PACKAGE_PATH }}
-
       - name: Install client-side dependencies
         run: npm install --prefix ${{ env.CLIENT_PACKAGE_PATH }}
 
@@ -41,10 +34,8 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: app
-          path: |
-            ${{ env.SERVER_PACKAGE_PATH }}build
-            ${{ env.CLIENT_PACKAGE_PATH }}build
+          name: client-app
+          path: ${{ env.CLIENT_PACKAGE_PATH }}build
 
   deploy:
     permissions:
@@ -58,6 +49,8 @@ jobs:
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
+        with:
+          name: client-app
 
       - name: 'Deploy to Azure WebApp'
         id: deploy-to-webapp
@@ -65,4 +58,4 @@ jobs:
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+          package: ${{ env.CLIENT_PACKAGE_PATH }}build

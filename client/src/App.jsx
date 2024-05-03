@@ -8,6 +8,7 @@ import MarsRover from './components/MarsRover';
 import APOD from './components/APOD';
 import Photos from './components/Photos';
 import About from './components/About';
+import LoginPage from './components/LoginPage';
 
 const App = () => (
   <Router>
@@ -20,6 +21,7 @@ const App = () => (
         <Route path="/photos" element={<Photos />} />
         <Route path="/photos" element={<Photos />} />
         <Route path="/about" element={<About />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </div>
   </Router>

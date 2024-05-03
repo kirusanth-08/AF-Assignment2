@@ -21,7 +21,7 @@ const APOD = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://api.nasa.gov/planetary/apod?api_key=rXQUrs3QIGnJgbZxTAJy0P48RGpR8F7f3mqwLJWJ&date=${selectedDate}`
+        `https://api.nasa.gov/planetary/apod?api_key=rXQUrs3QIGnJgbZxTAJy0P48RGpR8F7f3mqwLJWJ`
       );
       setData(result.data);
     };

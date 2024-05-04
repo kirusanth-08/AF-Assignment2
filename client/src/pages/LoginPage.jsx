@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import config from '../config';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -12,7 +13,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/users/login', {
+      const response = await axios.post(`${config.serverUrl}/users/login`, {
         email,
         password,
       });

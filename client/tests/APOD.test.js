@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import axios from 'axios';
-import APOD from '../components/APOD';
+import APOD from '../src/pages/APOD';
 
 jest.mock('axios');
 

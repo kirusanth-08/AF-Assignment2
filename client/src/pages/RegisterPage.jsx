@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import config from '../config'
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/users/register', formData);
+      const response = await axios.post(`${config.serverUrl}/users/register`, formData);
 
       // Check if registration was successful
       if (response && response.data && response.data.token) {

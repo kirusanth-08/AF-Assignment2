@@ -2,14 +2,14 @@ import { React, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Menu from './components/Menu';
-import MarsRover from './components/MarsRover';
-import APOD from './components/APOD';
-import Photos from './components/Photos';
-import About from './components/About';
-import LoginPage from './components/LoginPage';
-import RegisterPage from './components/RegisterPage';
+import Home from './pages/Home';
+import Menu from './pages/Menu';
+import MarsRover from './pages/MarsRover';
+import APOD from './pages/APOD';
+import Photos from './pages/Photos';
+import About from './pages/About';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import { authMiddleware } from './middleware/authMiddleware'; 
 
 const PrivateRoute = ({ element, ...rest }) => {

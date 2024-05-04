@@ -1,4 +1,5 @@
 import axios from 'axios';
+import config from '../config'
 
 export const authMiddleware = async () => {
   try {
@@ -11,7 +12,7 @@ export const authMiddleware = async () => {
     }
 
     // Send request to authentication endpoint with token in the Authorization header
-    const response = await axios.post('http://localhost:3000/users/authenticate', {}, {
+    const response = await axios.post(`${config.serverUrl}/users/authenticate`, {}, {
       headers: {
         Authorization: `Bearer ${token}`
       }

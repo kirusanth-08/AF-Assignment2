@@ -9,6 +9,7 @@ import APOD from './components/APOD';
 import Photos from './components/Photos';
 import About from './components/About';
 import LoginPage from './components/LoginPage';
+import RegisterPage from './components/RegisterPage';
 
 const App = () => (
   <Router>
@@ -22,6 +23,7 @@ const App = () => (
         <Route path="/photos" element={<Photos />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
       </Routes>
     </div>
   </Router>

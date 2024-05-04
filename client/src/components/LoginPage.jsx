@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [, setCookie] = useCookies(['token']);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -19,10 +17,13 @@ const LoginPage = () => {
         password,
       });
 
-      const { token } = response.data;
+      const { token, name } = response.data; // Extract name from response data
 
-      setCookie('token', token, { path: '/' });
+      // Store token and name in local storage
+      localStorage.setItem('token', token);
+      localStorage.setItem('name', name);
 
+      // Redirect to home page or any other page you want
       navigate('/');
     } catch (error) {
       console.error('Login failed:', error);

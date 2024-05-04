@@ -6,13 +6,12 @@ exports.register = async (req, res, next) => {
         const { name, email, password } = req.body;
         const user = new User({ name, email, password });
         await user.save();
-
-        console.log(name)
     
         // User is registered, generate a token
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     
-        res.status(201).json({ user, token });
+        // Send user's name along with the token in the response
+        res.status(201).json({ user, token, name: user.name });
     } catch (error) {
         next(error);
     }
@@ -32,8 +31,9 @@ exports.login = async (req, res, next) => {
     
         // User is authenticated, generate a token
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    
-        res.json({ message: 'Login successful', token });
+        
+        // Send user's name along with the token in the response
+        res.json({ message: 'Login successful', token, name: user.name });
     } catch (error) {
         next(error);
     }

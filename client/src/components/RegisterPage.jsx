@@ -3,25 +3,28 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const RegisterPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleRegister = async (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/users/register', {
-        name,
-        email,
-        password
-      });
+      const response = await axios.post('http://localhost:3000/users/register', formData);
 
       // Check if registration was successful
       if (response && response.data && response.data.token) {
-        // Save token to localStorage or cookies for future use
+        // Save token to localStorage for future use
         localStorage.setItem('token', response.data.token);
 
         // Proceed to the main page or any other route
@@ -37,35 +40,37 @@ const RegisterPage = () => {
 
   return (
     <div className='bg-blurred w-full h-screen flex flex-col justify-center items-center'>
-    <div className='bg-white bg-opacity-10 border-2 w-1/3 h-1/2 flex flex-col justify-between items-center rounded-xl p-4 z-50'>
+      <div className='bg-white bg-opacity-10 border-2 w-1/3 h-1/2 flex flex-col justify-between items-center rounded-xl p-4 z-50'>
         <h1 className='text-3xl font-semibold'>Register</h1>
         {error && <p className='text-red-500'>{error}</p>}
-        <form onSubmit={handleRegister} className='flex flex-col items-center w-full'>
+        <form onSubmit={handleSubmit} className='flex flex-col items-center w-full'>
           <input
             type='text'
             placeholder='Name'
             className='w-1/2 p-2 my-2 rounded-xl border-2 border-opacity-50 border-yellow-50'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            name='name'
+            value={formData.name}
+            onChange={handleChange}
             required
           />
           <input
             type='email'
             placeholder='Email'
             className='w-1/2 p-2 my-2 rounded-xl border-2 border-opacity-50 border-yellow-50'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name='email'
+            value={formData.email}
+            onChange={handleChange}
             required
           />
           <input
             type='password'
             placeholder='Password'
             className='w-1/2 p-2 my-2 rounded-xl border-2 border-opacity-50 border-yellow-50'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            name='password'
+            value={formData.password}
+            onChange={handleChange}
             required
           />
-          {/* Add other input fields (e.g., username) if needed */}
           <input
             type='submit'
             value='Register'

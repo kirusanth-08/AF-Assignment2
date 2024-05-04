@@ -12,26 +12,27 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
+    
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Node.js version
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
-
-      - name: npm install, build, and test
-        run: |
-          npm install
-          npm run build --if-present
-          npm run test --if-present
-      
-      - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: node-app
-          path: .
+    - uses: actions/checkout@v4
+        
+    - name: Set up Node.js version
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+        
+    - name: Build server app
+      run: |
+        cd server
+        npm install
+        cd ..
+        
+    - name: Upload server artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: server-app
+        path: ./server
+        
 
   deploy:
     runs-on: ubuntu-latest
@@ -43,11 +44,11 @@ jobs:
       id-token: write #This is required for requesting the JWT
 
     steps:
-      - name: Download artifact from build job
+      - name: Download server artifact
         uses: actions/download-artifact@v3
         with:
-          name: node-app
-      
+          name: server-app
+
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -55,11 +56,11 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D26E8ACFCE7B458B95F246B904C03548 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BF939C4D1C0949448D27469101BAEAFA }}
 
-      - name: 'Deploy to Azure Web App'
+
+      - name: 'Deploy server to Azure Web App'
         uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
+        id: deploy-server-to-webapp
         with:
           app-name: 'nasaxplore-server'
           slot-name: 'Production'
-          package: .
-          
+          package: ./server

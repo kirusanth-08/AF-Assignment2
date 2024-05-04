@@ -19,8 +19,16 @@ const RegisterPage = () => {
         password
       });
 
-      // Redirect to login page after successful registration
-      navigate('/login');
+      // Check if registration was successful
+      if (response && response.data && response.data.token) {
+        // Save token to localStorage or cookies for future use
+        localStorage.setItem('token', response.data.token);
+
+        // Proceed to the main page or any other route
+        navigate('/');
+      } else {
+        setError('Registration failed. Please try again.');
+      }
     } catch (error) {
       console.error('Registration failed:', error);
       setError('Registration failed. Please try again.');

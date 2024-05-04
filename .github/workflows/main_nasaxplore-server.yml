@@ -15,6 +15,13 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
+
+    - name: List server directory contents
+      run: |
+        dir ./server
+        dir ./server\node_modules
+        dir ./server\dist  # Assuming this is where your built files are located
+        dir ./server\config  # Assuming this is where your configuration files are located
         
     - name: Set up Node.js version
       uses: actions/setup-node@v3

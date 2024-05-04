@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy MERN app to Azure Web App - NasaXplore
 
 on:
@@ -63,7 +60,7 @@ jobs:
     needs: [build-client, build-server]
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      url: 'https://nasaxplore.azurewebsites.net/'
     permissions:
       id-token: write #This is required for requesting the JWT
 
@@ -72,7 +69,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: client-app
-        path: client-dist
+        path: ./client-dist
         
     - name: Download server artifact
       uses: actions/download-artifact@v3
@@ -86,10 +83,18 @@ jobs:
         tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FFBA113E15F843B48331AE64C01C3C96 }}
         subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D6DD5706E90C4A97B382360169C927D0 }}
 
-    - name: 'Deploy to Azure Web App'
+    - name: 'Deploy client to Azure Web App'
       uses: azure/webapps-deploy@v2
-      id: deploy-to-webapp
+      id: deploy-client-to-webapp
       with:
-        app-name: 'NasaXplore'
+        app-name: 'NasaXploreClient'
+        slot-name: 'Production'
+        package: ./client-dist
+
+    - name: 'Deploy server to Azure Web App'
+      uses: azure/webapps-deploy@v2
+      id: deploy-server-to-webapp
+      with:
+        app-name: 'NasaXploreServer'
         slot-name: 'Production'
         package: ./server

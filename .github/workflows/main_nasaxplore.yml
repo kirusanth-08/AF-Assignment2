@@ -87,7 +87,7 @@ jobs:
       uses: azure/webapps-deploy@v2
       id: deploy-client-to-webapp
       with:
-        app-name: 'NasaXploreClient'
+        app-name: 'NasaXplore'
         slot-name: 'Production'
         package: ./client-dist
 
@@ -95,6 +95,6 @@ jobs:
       uses: azure/webapps-deploy@v2
       id: deploy-server-to-webapp
       with:
-        app-name: 'NasaXploreServer'
+        app-name: 'nasaxplore-server'
         slot-name: 'Production'
         package: ./server

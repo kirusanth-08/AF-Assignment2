@@ -5,10 +5,11 @@ require('dotenv').config();
 exports.authenticate = async (req, res) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
-        console.log(token)
+        console.log("from header: " + token)
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const user = await User.findById(decoded.userId);
         
+        console.log("after auth: " + user)
         if (!user) {
             return res.status(401).json({ message: 'User not found' });
         }

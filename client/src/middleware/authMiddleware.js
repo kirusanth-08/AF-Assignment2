@@ -4,8 +4,9 @@ export const authMiddleware = async () => {
   try {
     // Check if JWT token is present in local storage
     const token = localStorage.getItem('token');
-    console.log(token)
+    // console.log("from auth: " + token)
     if (!token) {
+      // console.log("Token not found")
       return false; // No token found
     }
 
@@ -16,8 +17,11 @@ export const authMiddleware = async () => {
       }
     });
 
+    console.log(response)
+
     // Check authentication status
-    if (response && response.data && response.data.authenticated) {
+    if (response && response.data.user) {
+      console.log("res: " + response.data.user.name)
       return true; // Token is authenticated
     } else {
       return false; // Invalid token or user is not authenticated
@@ -35,7 +39,7 @@ export const logout = async () => {
     localStorage.removeItem('name');
 
     // Redirect the user to the login page or perform any other post-logout actions
-    window.location.href = '/login';
+    window.location.href = '/';
   } catch (error) {
     console.error('Logout failed:', error);
     // Handle logout failure if needed

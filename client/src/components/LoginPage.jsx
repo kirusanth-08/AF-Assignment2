@@ -23,6 +23,8 @@ const LoginPage = () => {
       localStorage.setItem('token', token);
       localStorage.setItem('name', name);
 
+      // console.log("The login" + token)
+
       // Redirect to home page or any other page you want
       navigate('/');
     } catch (error) {

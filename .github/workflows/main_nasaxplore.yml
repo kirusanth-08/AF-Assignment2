@@ -54,23 +54,18 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: [build-client, build-server]
+    needs: [build-server]  # Only need the server artifact
     environment:
       name: 'Production'
       url: 'https://nasaxplore.azurewebsites.net/'
     permissions:
       id-token: write #This is required for requesting the JWT
     steps:
-      - name: Download client artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: client-app
-          path: ./client-dist
-
-      - name: Download server artifact
+      - name: Download server artifact  # Only download the server artifact
         uses: actions/download-artifact@v3
         with:
           name: server-app
+          path: ./server  # Ensure this matches with the upload path
 
       - name: Login to Azure
         uses: azure/login@v1
@@ -85,6 +80,4 @@ jobs:
         with:
           app-name: 'NasaXplore'
           slot-name: 'Production'
-          package: |
-            ./client-dist
-            ./server
+          package: ./server

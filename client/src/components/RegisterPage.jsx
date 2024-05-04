@@ -27,6 +27,9 @@ const RegisterPage = () => {
         // Save token to localStorage for future use
         localStorage.setItem('token', response.data.token);
 
+        // Save name to localStorage for future use
+        localStorage.setItem('name', formData.name);
+
         // Proceed to the main page or any other route
         navigate('/');
       } else {

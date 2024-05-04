@@ -30,13 +30,15 @@ export const authMiddleware = async () => {
 
 export const logout = async () => {
   try {
-    // Clear token from local storage
+    // Clear token and name from localStorage
     localStorage.removeItem('token');
+    localStorage.removeItem('name');
 
-    // Redirect the user to the home page or perform any other post-logout actions
-    window.location.href = '/';
+    // Redirect the user to the login page or perform any other post-logout actions
+    window.location.href = '/login';
   } catch (error) {
     console.error('Logout failed:', error);
     // Handle logout failure if needed
   }
 };
+

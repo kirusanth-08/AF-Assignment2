@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { logout, authMiddleware } from '../middleware/authMiddleware';
+import { logout } from '../middleware/authMiddleware';
 
 const Navbar = () => {
-  const isAuthenticated = authMiddleware(); // Check if the user is authenticated
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleDropdownToggle = () => {
@@ -14,6 +13,9 @@ const Navbar = () => {
     logout(); // Call the logout function from the authMiddleware
     // You can also redirect the user to the login page or perform any other actions after logout
   };
+
+  // Check if user is authenticated
+  const isAuthenticated = localStorage.getItem('name');
 
   return (
     <div className="navbar z-50 fixed flex justify-around items-center bg-black bg-opacity-20 text-white w-full">
@@ -26,7 +28,7 @@ const Navbar = () => {
         {/* Conditionally render profile button or login button */}
         {isAuthenticated ? (
           <div className="relative" onMouseEnter={handleDropdownToggle} onMouseLeave={handleDropdownToggle}>
-            <button className="p-3 px-5 transition-all duration-500 hover:bg-white hover:bg-opacity-20">Profile</button>
+            <button className="p-3 px-5 transition-all duration-500 hover:bg-white hover:bg-opacity-20">{isAuthenticated}</button>
             {isDropdownOpen && (
               <div className="absolute top-full left-0 bg-white text-black rounded-md shadow-md">
                 <button onClick={handleLogout} className="block p-2 hover:bg-gray-200">Logout</button>

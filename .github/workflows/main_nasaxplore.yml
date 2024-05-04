@@ -7,54 +7,51 @@ on:
   workflow_dispatch:
 
 jobs:
-
   build-client:
     runs-on: windows-latest
-    
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Node.js version
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-        
-    - name: Build React app
-      run: |
-        cd client
-        npm install
-        npm run build
-        cd ..
-        
-    - name: Upload client artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: client-app
-        path: ./client/dist
-        
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Build React app
+        run: |
+          cd client
+          npm install
+          npm run build
+          cd ..
+
+      - name: Upload client artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: client-app
+          path: ./client/dist
+
   build-server:
     runs-on: windows-latest
-    
     steps:
-    - uses: actions/checkout@v4
-        
-    - name: Set up Node.js version
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18.x'
-        
-    - name: Build server app
-      run: |
-        cd server
-        npm install
-        cd ..
-        
-    - name: Upload server artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: server-app
-        path: ./server
-        
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Build server app
+        run: |
+          cd server
+          npm install
+          cd ..
+
+      - name: Upload server artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: server-app
+          path: ./server
+
   deploy:
     runs-on: ubuntu-latest
     needs: [build-client, build-server]
@@ -63,38 +60,31 @@ jobs:
       url: 'https://nasaxplore.azurewebsites.net/'
     permissions:
       id-token: write #This is required for requesting the JWT
-
     steps:
-    - name: Download client artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: client-app
-        path: ./client-dist
-        
-    - name: Download server artifact
-      uses: actions/download-artifact@v3
-      with:
-        name: server-app
-        
-    - name: Login to Azure
-      uses: azure/login@v1
-      with:
-        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4C607BC2051544D6ABE65CA21A5EC368 }}
-        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FFBA113E15F843B48331AE64C01C3C96 }}
-        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D6DD5706E90C4A97B382360169C927D0 }}
+      - name: Download client artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: client-app
+          path: ./client-dist
 
-    - name: 'Deploy client to Azure Web App'
-      uses: azure/webapps-deploy@v2
-      id: deploy-client-to-webapp
-      with:
-        app-name: 'NasaXplore'
-        slot-name: 'Production'
-        package: ./client-dist
+      - name: Download server artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: server-app
 
-    - name: 'Deploy server to Azure Web App'
-      uses: azure/webapps-deploy@v2
-      id: deploy-server-to-webapp
-      with:
-        app-name: 'nasaxplore-server'
-        slot-name: 'Production'
-        package: ./server
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4C607BC2051544D6ABE65CA21A5EC368 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FFBA113E15F843B48331AE64C01C3C96 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D6DD5706E90C4A97B382360169C927D0 }}
+
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        with:
+          app-name: 'NasaXplore'
+          slot-name: 'Production'
+          package: |
+            ./client-dist
+            ./server

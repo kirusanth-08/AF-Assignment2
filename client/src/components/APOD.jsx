@@ -36,7 +36,7 @@ const APOD = () => {
         <div className="relative flex max-w-6xl h-3/4 rounded-md overflow-hidden border-2 border-opacity-20">
           <img src={data.url} alt="APOD" className="w-full h-full object-cover" />
           
-          <div className="p-1 m-2 absolute right-2 cursor-pointer bg-white bg-opacity-0 hover:bg-opacity-5 text-xs border-2 opacity-40 hover:opacity-70 rounded-lg transition-all" onClick={ showDetailHandler }>
+          <div className="p-1 m-2 absolute right-2 cursor-pointer bg-white bg-opacity-0 hover:bg-opacity-5 text-xs border-2 opacity-40 hover:opacity-70 rounded-lg transition-all z-50" onClick={ showDetailHandler }>
             { showDetail ? 'Close Details' : 'Open Details' }
           </div>
 

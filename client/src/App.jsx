@@ -20,7 +20,6 @@ const App = () => (
         <Route path="/apod" element={<APOD />} />
         <Route path="/marsrover" element={<MarsRover />} />
         <Route path="/photos" element={<Photos />} />
-        <Route path="/photos" element={<Photos />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

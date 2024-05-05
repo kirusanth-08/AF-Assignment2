@@ -17,6 +17,13 @@ app.use(express.static(path.join(__dirname, 'client/dist')));
 // Routes
 app.use('/users', require('./routes/userRoutes'));
 
+
+app.get('/check-env-vars', (req, res) => {
+  const isMongoDbUriDefined = !!process.env.MONGODB_URI;
+  const isPortDefined = !!process.env.PORT;
+  res.json({ isMongoDbUriDefined, isPortDefined });
+});
+
 // Catch all other routes and return the index.html file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));

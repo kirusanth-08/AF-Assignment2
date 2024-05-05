@@ -1,6 +1,6 @@
 // config.js
 const config = {
-    serverUrl: `https://localhost:3000/users`
+    serverUrl: `http://localhost:3000/users`
   };
   
   export default config;

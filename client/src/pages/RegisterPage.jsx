@@ -21,7 +21,7 @@ const RegisterPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${config.serverUrl}/users/register`, formData);
+      const response = await axios.post(`${config.serverUrl}/register`, formData);
 
       // Check if registration was successful
       if (response && response.data && response.data.token) {

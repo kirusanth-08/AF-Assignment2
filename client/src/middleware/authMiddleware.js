@@ -12,7 +12,7 @@ export const authMiddleware = async () => {
     }
 
     // Send request to authentication endpoint with token in the Authorization header
-    const response = await axios.post(`${config.serverUrl}/users/authenticate`, {}, {
+    const response = await axios.post(`${config.serverUrl}/authenticate`, {}, {
       headers: {
         Authorization: `Bearer ${token}`
       }

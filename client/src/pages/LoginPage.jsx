@@ -13,7 +13,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${config.serverUrl}/users/login`, {
+      const response = await axios.post(`${config.serverUrl}/login`, {
         email,
         password,
       });

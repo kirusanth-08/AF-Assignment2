@@ -55,9 +55,9 @@ const MarsRover = () => {
       .catch((error) => console.error(error));
   }, [selectedRover, selectedCamera, selectedSol, selectedEarthDate]);
   return (
-    <div className="bg-blurred w-full h-screen flex justify-center items-center">
+    <div className="bg-blurred w-full h-screen flex justify-center sm:items-center">
       {showForm ? (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center w-full p-20">
           <div className=" rounded-lg p-5 bg-opacity-20 bg-white border-2 border-white">
             <div className="flex flex-col items-start justify-center">
               <label className="text-2xl font-bold">Mars Rover Photos</label>
@@ -110,7 +110,7 @@ const MarsRover = () => {
 
               <button
                 onClick={handleSubmit}
-                className="w-full p-2 m-2 bg-black text-white hover:bg-opacity-50 text-center rounded-lg">
+                className="w-full p-2 m-2 bg-white text-black hover:bg-transparent border-2 transition-all hover:text-white hover:border-white text-center rounded-lg">
                 Get photos ({(images.length)})
               </button>
             </div>
@@ -118,7 +118,7 @@ const MarsRover = () => {
         </div>
       ) : (
 
-        <div className="w-full h-screen flex justify-center items-center">  
+        <div className="w-full h-full flex justify-center items-center ">  
         <div className="relative w-2/3 h-2/3 bg-white bg-opacity-10 overflow-scroll grid grid-cols-3 gap-2 rounded-2xl p-10 border-2">
           <div className="absolute top-1 left-1 px-3 bg-white bg-opacity-20 rounded-lg hover:bg-opacity-30" onClick={ handleBack } >Back</div>
             {images.map((image, index) => (
@@ -131,7 +131,7 @@ const MarsRover = () => {
                 />
                 { showDetail && (
                   <>
-                    <div className=" w-1/5 fixed h-2/3 bg-black bg-opacity-30 right-0 p-5 rounded-l-2xl">
+                    <div className=" sm:w-1/5 fixed h-2/3 bg-black bg-opacity-30 right-0 p-5 rounded-l-2xl">
                       <button className="absolute top-0 right-0 text-sm underline" onClick={ hideDetail }>close</button>
                       <h1 className=" text-3xl">PhotoDetails</h1>
                       <p>Sol: {image.sol}</p>

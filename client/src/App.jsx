@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Menu from './pages/Menu';
 import MarsRover from './pages/MarsRover';
 import APOD from './pages/APOD';
-import Photos from './pages/Photos';
+// import Photos from './pages/Photos';
 import About from './pages/About';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -37,7 +37,7 @@ const App = () => (
         <Route path="/menu" element={<Menu />} />
         <Route path="/apod" element={<PrivateRoute element={<APOD />} />} />
         <Route path="/marsrover" element={<PrivateRoute element={<MarsRover />} />} />
-        <Route path="/photos" element={<PrivateRoute element={<Photos />} />} />
+        {/* <Route path="/photos" element={<PrivateRoute element={<Photos />} />} /> */}
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

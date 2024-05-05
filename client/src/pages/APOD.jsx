@@ -30,7 +30,7 @@ const APOD = () => {
   }, [selectedDate]);
 
   return (
-    <div className="bg-blurred w-full bg-white-400 h-screen flex justify-center items-center">
+    <div className="bg-blurred w-full bg-white-400 h-screen flex justify-center items-center p-20">
       {data ? (
         
         <div className="relative flex max-w-6xl h-3/4 rounded-md overflow-hidden border-2 border-opacity-20">
@@ -41,7 +41,7 @@ const APOD = () => {
           </div>
 
           { showDetail && (
-            <div className='w-2/4 h-3-4 bg-white text-white font-extralight text-sm p-3 overflow-auto bg-opacity-20 backdrop-blur-md'>
+            <div className='w-2/4 bg-white text-white font-extralight text-sm p-3 overflow-auto bg-opacity-20 backdrop-blur-md'>
               <div className='font-semibold text-base'>Title: </div> {data.title} <br />
               <div className='font-semibold'>Date: </div> {data.date} <br />
               <div className='font-semibold'>Author: </div> {data.copyright} <br />

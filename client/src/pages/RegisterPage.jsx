@@ -43,15 +43,15 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className='bg-blurred w-full h-screen flex flex-col justify-center items-center'>
-      <div className='bg-white bg-opacity-10 border-2 w-1/3 h-1/2 flex flex-col justify-between items-center rounded-xl p-4 z-50'>
+    <div className='bg-blurred w-full h-screen flex flex-col justify-center items-center p-20'>
+      <div className='bg-white bg-opacity-10 border-2 w-full sm:w-1/3 flex flex-col justify-between gap-10 items-center rounded-xl p-4 z-50'>
         <h1 className='text-3xl font-semibold'>Register</h1>
         {error && <p className='text-red-500'>{error}</p>}
         <form onSubmit={handleSubmit} className='flex flex-col items-center w-full'>
           <input
             type='text'
             placeholder='Name'
-            className='w-1/2 p-2 my-2 rounded-xl border-2 border-opacity-50 border-yellow-50'
+            className='w-3/4 sm:w-1/2 p-2 my-2 rounded-xl border-2 border-opacity-50 border-yellow-50'
             name='name'
             value={formData.name}
             onChange={handleChange}
@@ -60,7 +60,7 @@ const RegisterPage = () => {
           <input
             type='email'
             placeholder='Email'
-            className='w-1/2 p-2 my-2 rounded-xl border-2 border-opacity-50 border-yellow-50'
+            className='w-3/4 sm:w-1/2 p-2 my-2 rounded-xl border-2 border-opacity-50 border-yellow-50'
             name='email'
             value={formData.email}
             onChange={handleChange}
@@ -69,7 +69,7 @@ const RegisterPage = () => {
           <input
             type='password'
             placeholder='Password'
-            className='w-1/2 p-2 my-2 rounded-xl border-2 border-opacity-50 border-yellow-50'
+            className='w-3/4 sm:w-1/2 p-2 my-2 rounded-xl border-2 border-opacity-50 border-yellow-50'
             name='password'
             value={formData.password}
             onChange={handleChange}
@@ -78,7 +78,7 @@ const RegisterPage = () => {
           <input
             type='submit'
             value='Register'
-            className='cursor-pointer w-1/2 p-2 my-2 rounded-xl border-2 border-opacity-50 border-yellow-50 hover:bg-white hover:text-black transition-all'
+            className='cursor-pointer w-3/4 sm:w-1/2 p-2 my-2 rounded-xl bg-white border-2 border-opacity-50 bg-opacity-80 border-yellow-50 hover:bg-transparent hover:text-white text-black transition-all'
           />
         </form>
         <p className='w-full text-end'>

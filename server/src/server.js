@@ -9,12 +9,12 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-// app.use(cors());
+
+// CORS Configuration
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN,
+  origin: process.env.CORS_ORIGIN || 'https://af-assignment2.onrender.com', 
   credentials: true,
 };
-
 app.use(cors(corsOptions));
 
 // Serve static files from the React app

@@ -18,11 +18,11 @@ app.use(express.static(path.join(__dirname, 'client/dist')));
 app.use('/users', require('./routes/userRoutes'));
 
 
-app.get('/check-env-vars', (req, res) => {
-  const isMongoDbUriDefined = !!process.env.MONGODB_URI;
-  const isPortDefined = !!process.env.PORT;
-  res.json({ isMongoDbUriDefined, isPortDefined });
-});
+// app.get('/check-env-vars', (req, res) => {
+//   const isMongoDbUriDefined = !!process.env.MONGODB_URI;
+//   const isPortDefined = !!process.env.PORT;
+//   res.json({ isMongoDbUriDefined, isPortDefined });
+// });
 
 // Catch all other routes and return the index.html file
 app.get('*', (req, res) => {
@@ -36,7 +36,8 @@ app.use((err, req, res, next) => {
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://ds2024:ds2024@cluster0.iryrt4w.mongodb.net/NASA-users', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB');
     // Start the server

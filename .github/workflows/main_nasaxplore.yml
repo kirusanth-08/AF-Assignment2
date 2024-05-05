@@ -32,7 +32,7 @@ jobs:
     needs: build-server
     environment:
       name: 'Production'
-      url: 'https://your-server-app.azurewebsites.net/' # Replace with your server app URL
+      url: 'https://nasaxplore.azurewebsites.net/' # Replace with your server app URL
     permissions:
       id-token: write #This is required for requesting the JWT
     steps:
@@ -50,6 +50,6 @@ jobs:
       - name: 'Deploy server to Azure Web App'
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'your-server-app' # Replace with your server app name
+          app-name: 'NasaXplore' # Replace with your server app name
           slot-name: 'Production'
           package: ./server

@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path'); // Add path module
+// const path = require('path'); // Add path module
 
 require('dotenv').config();
 
@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'client/dist')));
+// app.use(express.static(path.join(__dirname, 'client/dist')));
 
 // Routes
 app.use('/users', require('./routes/userRoutes'));
@@ -25,9 +25,9 @@ app.use('/users', require('./routes/userRoutes'));
 // });
 
 // Catch all other routes and return the index.html file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
+// });
 
 // Error handling middleware
 app.use((err, req, res, next) => {

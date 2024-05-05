@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: '20.x'
       - name: Build server app
         run: |
           cd server
@@ -35,18 +35,21 @@ jobs:
       url: 'https://nasaxplore.azurewebsites.net/' # Replace with your server app URL
     permissions:
       id-token: write #This is required for requesting the JWT
+      
     steps:
       - name: Download server artifact
         uses: actions/download-artifact@v3
         with:
           name: server-app
           path: ./server
+
       - name: Login to Azure
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4C607BC2051544D6ABE65CA21A5EC368 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FFBA113E15F843B48331AE64C01C3C96 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D6DD5706E90C4A97B382360169C927D0 }}
+
       - name: 'Deploy server to Azure Web App'
         uses: azure/webapps-deploy@v2
         with:

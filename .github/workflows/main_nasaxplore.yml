@@ -55,13 +55,7 @@ jobs:
     permissions:
       id-token: write #This is required for requesting the JWT
     steps:
-      - name: Download client artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: client-app
-          path: ./client-dist
-
-      - name: Download server artifact
+      - name: Download server artifact  # Only download the server artifact
         uses: actions/download-artifact@v3
         with:
           name: server-app

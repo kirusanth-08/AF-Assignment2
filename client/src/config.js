@@ -1,6 +1,6 @@
 // config.js
 const config = {
-    serverUrl: `https://nasaxplore.azurewebsites.net/users`
+    serverUrl: `https://localhost:3000/users`
   };
   
   export default config;

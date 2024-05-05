@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-// const path = require('path'); // Add path module
+const path = require('path'); // Add path module
 
 require('dotenv').config();
 
@@ -12,22 +12,15 @@ app.use(express.json());
 app.use(cors());
 
 // Serve static files from the React app
-// app.use(express.static(path.join(__dirname, 'client/dist')));
+app.use(express.static(path.join(__dirname, '../../client/dist')));
 
 // Routes
 app.use('/users', require('./routes/userRoutes'));
 
-
-// app.get('/check-env-vars', (req, res) => {
-//   const isMongoDbUriDefined = !!process.env.MONGODB_URI;
-//   const isPortDefined = !!process.env.PORT;
-//   res.json({ isMongoDbUriDefined, isPortDefined });
-// });
-
 // Catch all other routes and return the index.html file
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -36,8 +29,7 @@ app.use((err, req, res, next) => {
 });
 
 // Connect to MongoDB
-// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-mongoose.connect('mongodb+srv://ds2024:ds2024@cluster0.iryrt4w.mongodb.net/NASA-users', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB');
     // Start the server

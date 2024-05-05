@@ -1,11 +1,18 @@
 const request = require('supertest');
 const express = require('express');
-const router = require('../src/routes/authRoutes'); 
+const router = require('../src/routes/userRoutes'); 
 const userController = require('../src/controllers/userController');
 const authMiddleware = require('../src/middleware/auth');
 
 const app = express();
 app.use(express.json());
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: 'Internal server error' });
+});
+
 app.use(router);
 
 describe('Auth Routes', () => {

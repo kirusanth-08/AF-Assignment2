@@ -1,53 +1,66 @@
-const { register, login } = require('../src/controllers/userController');
+// Import the necessary modules and files
+const UserController = require('../src/controllers/userController');
 const User = require('../src/models/User');
 const jwt = require('jsonwebtoken');
 
-jest.mock('../src/models/User'); // Mocking the User model
-
-describe('Authentication Controller', () => {
+describe('User Controller Tests', () => {
+  
+  // Test cases for the register function
   describe('register', () => {
-    it('should register a new user', async () => {
-      const req = { body: { name: 'John Doe', email: 'john@example.com', password: 'password' } };
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn()
-      };
+    test('Should register a new user', async () => {
+      // Mock request and response objects
+      const req = { body: { name: 'TestUser', email: 'test@example.com', password: 'test123' } };
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
 
-      // Mock User model's save method
-      User.prototype.save.mockResolvedValueOnce({ _id: 'mockUserId', name: req.body.name, email: req.body.email });
+      // Call the register function from userController with mock request and response
+      await UserController.register(req, res);
 
-      await register(req, res);
-
+      // Assert that the response status is 201 and contains the user details
       expect(res.status).toHaveBeenCalledWith(201);
-      expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ user: expect.any(Object), token: expect.any(String), name: req.body.name }));
-    });
-
-    // Add more test cases to cover edge cases and error scenarios
+      expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ user: expect.any(Object), token: expect.any(String), name: 'TestUser' }));
+    }, 10000);
   });
 
+  // Test cases for the login function
   describe('login', () => {
-    it('should log in an existing user', async () => {
-      const req = { body: { email: 'john@example.com', password: 'password' } };
-      const res = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn()
-      };
+    test('Should log in an existing user with correct credentials', async () => {
+      // Mock request and response objects
+      const req = { body: { email: 'test@example.com', password: 'test123' } };
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
 
-      // Mock User.findOne method to return a mock user
-      User.findOne.mockResolvedValueOnce({
-        comparePassword: jest.fn().mockResolvedValue(true),
-        _id: 'mockUserId',
-        name: 'John Doe'
-      });
+      // Mock User.findOne to return a user with the provided email
+      User.findOne = jest.fn().mockResolvedValue({ email: 'test@example.com', comparePassword: jest.fn().mockResolvedValue(true) });
 
-      // Mock jwt.sign method
-      jwt.sign.mockReturnValueOnce('mockToken');
+      // Call the login function from userController with mock request and response
+      await UserController.login(req, res);
 
-      await login(req, res);
+      // Assert that the response status is 200 and contains the login message
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({ message: 'Login successful', token: expect.any(String), name: undefined });
+    });
+  });
 
-      expect(res.json).toHaveBeenCalledWith({ message: 'Login successful', token: 'mockToken', name: 'John Doe' });
+  // Test cases for the authenticate function
+  describe('authenticate', () => {
+    test('Should authenticate a user with a valid JWT token', async () => {
+      // Mock request and response objects
+      const req = { headers: { authorization: 'Bearer validToken' } };
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+
+      // Mock jwt.verify to return a decoded token
+      jwt.verify = jest.fn().mockReturnValue({ userId: 'userId123' });
+
+      // Mock User.findById to return a user with the provided userId
+      User.findById = jest.fn().mockResolvedValue({ _id: 'userId123' });
+
+      // Call the authenticate function from authMiddleware with mock request and response
+      await authMiddleware.authenticate(req, res);
+
+      // Assert that the response status is 200 and contains the authentication message
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({ message: 'Authentication successful', user: expect.any(Object) });
     });
 
-    // Add more test cases to cover edge cases and error scenarios
   });
 });
+

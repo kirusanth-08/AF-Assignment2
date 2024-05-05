@@ -6,8 +6,7 @@ exports.authenticate = async (req, res) => {
     try {
         const token = req.headers.authorization.split(' ')[1];
         console.log("from header: " + token)
-        // const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const decoded = jwt.verify(token, `kirusanth`);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const user = await User.findById(decoded.userId);
         
         console.log("after auth: " + user)

@@ -9,7 +9,13 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN,
+  credentials: true,
+}
+
+app.use(cors(corsOptions));
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../../client/dist')));

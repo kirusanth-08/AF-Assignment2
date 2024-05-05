@@ -1,6 +1,6 @@
 // config.js
 const config = {
-    serverUrl: `http://localhost:3000/users`
+    serverUrl: `https://af-assignment2.onrender.com`
   };
   
   export default config;

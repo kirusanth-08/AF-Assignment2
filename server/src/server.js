@@ -12,7 +12,7 @@ app.use(express.json());
 
 // CORS Configuration
 const corsOptions = {
-  origin: process.env.CORS_ORIGIN || 'https://af-assignment2.onrender.com', 
+  origin: process.env.CORS_ORIGIN || '*', 
   credentials: true,
 };
 app.use(cors(corsOptions));

@@ -1,5 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/V1F4A3D5)
-
 # NASA React Frontend Application
 
 Welcome to the NASA React Frontend Application! This project utilizes NASA APIs, specifically the Astronomy Picture of the Day (APOD) and Mars Rover APIs, to fetch and display space-related data. Additionally, it includes a server part for authentication, login, and registration functionalities.
